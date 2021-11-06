@@ -9,6 +9,13 @@
 * [About This Book](intro/about-this-book/README.md)
   * [Author](intro/about-this-book/author.md)
 
+## Essentials
+
+* [Installation](essentials/installation.md)
+* [Configuration](essentials/configuration.md)
+* [Sending Mail](essentials/sending-mail.md)
+
 ## Advanced
 
 * [Building Protocols](advanced/building-protocols.md)
+* [Mail Events](advanced/mail-events.md)
