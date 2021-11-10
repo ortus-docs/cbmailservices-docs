@@ -17,5 +17,6 @@
 
 ## Advanced
 
+* [Async Mail](advanced/async-mail.md)
 * [Building Protocols](advanced/building-protocols.md)
 * [Mail Events](advanced/mail-events.md)

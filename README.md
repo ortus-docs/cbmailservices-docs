@@ -6,7 +6,7 @@ description: cbMailServices is a module to send email in a fluent and abstracted
 
 ## Welcome to the ColdBox Mail Services
 
-Sending email doesn't have to be complicated or archaic. The ColdBox Mail Services (`cbmailservices`) module will allow you to send email in a fluent and abstracted way in multiple protocols for many environments. The supported protocols are:
+Sending email doesn't have to be complicated or archaic. The ColdBox Mail Services (`cbmailservices`) module will allow you to send email in a _fluent_ and _abstracted_ way in multiple protocols for many environments in a **single cohesive API.** The supported protocols are:
 
 * **CFMail** - Traditional `cfmail` sending
 * **File** - Write emails to disk
@@ -103,4 +103,3 @@ Because of His grace, this project exists. If you don't like this, then don't re
 
 > "Therefore being justified by **faith**, we have peace with God through our Lord Jesus Christ: By whom also we have access by **faith** into this **grace** wherein we stand, and rejoice in hope of the glory of God." Romans 5:5
 
-\
