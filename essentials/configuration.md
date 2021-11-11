@@ -14,8 +14,8 @@ moduleSettings = {
         // Here you can register one or many mailers by name
         mailers         : { 
             "default" : { class : "CFMail" },
-            "files" : { class:"File", properties : { filePath : "/logs" },
-            "postmark" : { class:"PostMark", properties : { apiKey : "234" } 
+            "files" : { class:"File", properties : { filePath : "/logs" } },
+            "postmark" : { class:"PostMark", properties : { apiKey : "234" } } 
         },
         // The defaults for all mail config payloads and protocols
         defaults        : {
