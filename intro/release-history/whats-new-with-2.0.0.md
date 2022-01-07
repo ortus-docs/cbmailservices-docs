@@ -61,6 +61,10 @@ cbmailservices : {
 
 If no `defaultProtocol` is added and no `mailers` then the mail services module will register a `cfmail` protocol for you as the **`default` mailer.**
 
+### Mail bean returned from send() method
+
+Previous a struct containing `error` and `errorArray` would be returned from the `send()` method.  Now, the `Mail` bean is returned (whether using `mail.send()` or `mailService.send( mail )`). The previously available struct can be accessed using `mail.getResults()`. (Be sure to see the [changes to the `errorArray` name below](whats-new-with-2.0.0.md#no-more-errorarray).)
+
 ### No More `errorArray`
 
 The return struct from the mail services has been modified. The `errorArray` has been renamed to `messages`. Which is still an array but can be used by any protocol to register an array of messages about the mailing for any status.
