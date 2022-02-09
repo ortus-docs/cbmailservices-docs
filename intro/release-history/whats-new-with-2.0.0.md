@@ -187,7 +187,7 @@ mailService
   .onSuccess ( () => {
 
   } )
-  .onError( () = > {
+  .onError( () => {
   } );
 ```
 
