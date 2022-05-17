@@ -56,4 +56,19 @@ var mailId = newMail(
 .queue();
 ```
 
-The `queue` method will return back a task ID guid, which you can use to track the task down in your logs or via the Mail Service.
+The `queue`method will return back a task ID guid, which you can use to track the task down in your logs or via the Mail Service.
+
+
+
+The mail scheduler is on by default for convenience but is only needed when using the asynchronous mail feature. It can be turned off, if desired, by these steps:
+
+1. Open config/coldbox.cfc
+2. In the modulesSettings section, add a key for cbmailServices with the property `runQueueTask` set to `false`. See the [Configuration ](../essentials/configuration.md#runqueuetask)section for more details.
+
+```
+moduleSettings = {
+	cbmailServices : {
+		runQueueTask: false
+	}
+}
+```

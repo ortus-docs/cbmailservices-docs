@@ -21,7 +21,9 @@ moduleSettings = {
         defaults        : {
             from : "info@ortussolutions.com",
             cc : "sales@ortussolutions.com"
-        }
+        },
+	//Whether the scheduled task is running or not
+	runQueueTask	: true
     }
 }
 ```
@@ -30,7 +32,7 @@ By default, the mail services are configured to send mail via the `cfmail` tag u
 
 #### TokenMarker
 
-The tokenMarker is used when doing mail merges with variables.  The service will look in the body of the email and do replacements according to the following pattern:
+The tokenMarker is used when doing mail merges with variables. The service will look in the body of the email and do replacements according to the following pattern:
 
 ```
 @{key}@
@@ -38,11 +40,11 @@ The tokenMarker is used when doing mail merges with variables.  The service will
 
 #### DefaultProtocol
 
-The name of the mailer key that will be used by default to send mail.  The default is called `default`.
+The name of the mailer key that will be used by default to send mail. The default is called `default`.
 
 #### Mailers
 
-A structure of mailer protocol registrations by key name.  Each mailer is registered with the following pattern:
+A structure of mailer protocol registrations by key name. Each mailer is registered with the following pattern:
 
 ```javascript
 mailerKey : {
@@ -53,7 +55,11 @@ mailerKey : {
 
 #### Defaults
 
-A structure of default variables that will be seeded into the Mail payload.  These are then used by the protocols as defaults.  For example, the `CFMail` protocol will use all these as defaults to the `cfmail` tag.
+A structure of default variables that will be seeded into the Mail payload. These are then used by the protocols as defaults. For example, the `CFMail` protocol will use all these as defaults to the `cfmail` tag.
+
+#### **RunQueueTask**
+
+By default, a task runs every minute to facilitate the sending of email asynchronously (non-blocking). Setting runQueueTask to false will override the default and the task will not run.&#x20;
 
 ### Mail Protocols
 
