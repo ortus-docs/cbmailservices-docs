@@ -110,6 +110,16 @@ mailers : {
 		properties = {
 			APIKey = "123"
 		}
+	},
+
+	// MailGun
+	"mailgun" = {
+		class = "Mailgun",
+		// Required properties
+		properties = {
+			ApiKey  = '123',
+			domain  = 'mg.somedomain.com'
+		}
 	};
 }
 ```
