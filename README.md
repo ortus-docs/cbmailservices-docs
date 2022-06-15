@@ -12,7 +12,7 @@ Sending email doesn't have to be complicated or archaic. The ColdBox Mail Servic
 * **File** - Write emails to disk
 * **InMemory** - Store email mementos in an array. Perfect for testing.
 * **Null** - Ignores emails sent to it.
-* **Postmark** - Send via the PostMark API Service (https://postmarkapp.com/)
+* **Postmark** - Send via the PostMark API Service ([https://postmarkapp.com/](https://postmarkapp.com/))
 * **Mailgun** - Send via the MailGun API Service ([https://www.mailgun.com/](https://www.mailgun.com/))
 
 It also sports tons of useful features for mail sending:

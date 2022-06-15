@@ -69,6 +69,7 @@ The mail services can send mail via different protocols. The available protocol 
 * `Null`
 * `InMemory`
 * `File`
+* `Mailgun`
 * `Postmark`
 
 > Please note that some of the protocol have property requirements.
@@ -126,7 +127,7 @@ mailers : {
 
 #### Mailer WireBox ID
 
-You can also register ANY WireBox ID or class path as the mailer as well. This will allow you to register mailers that come from your application or any other module.
+You can also register _ANY_ WireBox ID or class path as the mailer as well. This will allow you to register mailers that come from your application or any other module.
 
 ```jsx
 moduleSettings = {
