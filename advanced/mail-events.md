@@ -8,7 +8,7 @@ component extends="coldbox.system.Interceptor"{
     void function configure(){
     }
 
-    boolean function preMailSend( event, data, buffer, rc, prc ){
+    function preMailSend( event, data, buffer, rc, prc ){
         var environment = getSetting('environment');
         var appName = getSetting('appName');
 
@@ -20,7 +20,7 @@ component extends="coldbox.system.Interceptor"{
         }       
     }
 
-    boolean function postMailSend( event, data, buffer, rc, prc ){
+    function postMailSend( event, data, buffer, rc, prc ){
         if( data.result.error ){
             //log mail failure here...
         }
