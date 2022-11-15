@@ -32,7 +32,7 @@ By default, the mail services are configured to send mail via the `cfmail` tag u
 
 #### TokenMarker
 
-The tokenMarker is used when doing mail merges with variables. The service will look in the body of the email and do replacements according to the following pattern:
+The `tokenMarker` is used when doing mail merges with variables. The service will look in the body of the email and do replacements according to the following pattern:
 
 ```
 @{key}@
@@ -55,11 +55,11 @@ mailerKey : {
 
 #### Defaults
 
-A structure of default variables that will be seeded into the Mail payload. These are then used by the protocols as defaults. For example, the `CFMail` protocol will use all these as defaults to the `cfmail` tag.
+A structure of default variables will be seeded into the Mail payload. These are then used by the protocols as defaults. For example, the `CFMail` protocol will use all these as defaults to the `cfmail` tag.
 
 #### **RunQueueTask**
 
-By default, a task runs every minute to facilitate the sending of email asynchronously (non-blocking). Setting runQueueTask to false will override the default and the task will not run.&#x20;
+By default, a task runs every minute to facilitate the sending of emails asynchronously (non-blocking). Setting runQueueTask to false will override the default and the task will not run.&#x20;
 
 ### Mail Protocols
 
@@ -127,7 +127,7 @@ mailers : {
 
 #### Mailer WireBox ID
 
-You can also register _ANY_ WireBox ID or class path as the mailer as well. This will allow you to register mailers that come from your application or any other module.
+You can also register _ANY_ WireBox ID or classpath as the mailer as well. This will allow you to register mailers that come from your application or any other module.
 
 ```jsx
 moduleSettings = {

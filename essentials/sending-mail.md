@@ -1,13 +1,13 @@
 # Sending Mail
 
-You can initiate a mail payload via the mixin helper (`newMail()`) or via the injected mail service's `newMail()` method. The arguments you pass into this method will be used to seed the payload with all the arguments passed to the `cfmail` tag or the chosen protocol properties. You can also pass an optional `mailer` argument which will override the `default` protocol to one of your liking.
+You can initiate a mail payload via the mixin helper (`newMail()`) or via the injected mail service's `newMail()` method. The arguments you pass into this method will be used to seed the payload with all the arguments passed to the `cfmail` tag or the chosen protocol properties. You can also pass an optional `mailer` argument that will override the `default` protocol to one of your likings.
 
 ## Helper
 
 The `newMail()` helper is useful so you can send mail from your handlers and interceptors.
 
 {% hint style="info" %}
-Please note that the mixin helper can **ONLY** be used in handlers, interceptors, layouts and views. You will need to use the injection if you want to send mail from your models.
+Please note that the mixin helper can **ONLY** be used in handlers, interceptors, layouts and views. You will need to use the delegater if you want to send mail from your models.
 {% endhint %}
 
 ```javascript
@@ -35,6 +35,20 @@ newMail(
 .onError( function( result, mail ){
 	// Process the error
 });
+```
+
+## Delegate
+
+If you are using ColdBox 7 you can use the `Mailable@cbMailservices` delegate to add mailing capabilities to ANY model managed by WireBox.  It will add the `newMail()` method to your objects:
+
+```javascript
+component name="UserService" delegates="Mailable@cbMailservices"{
+
+  ...
+    newMail()
+      .send();
+
+}
 ```
 
 ## MailService

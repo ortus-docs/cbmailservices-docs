@@ -6,7 +6,7 @@ description: cbMailServices is a module to send email in a fluent and abstracted
 
 ## Welcome to the ColdBox Mail Services
 
-Sending email doesn't have to be complicated or archaic. The ColdBox Mail Services (`cbmailservices`) module will allow you to send email in a _fluent_ and _abstracted_ way in multiple protocols for many environments in a **single cohesive API.** The supported protocols are:
+Sending emails doesn't have to be complicated or archaic. The ColdBox Mail Services (`cbmailservices`) module will allow you to send emails in a _fluent_ and _abstract_ way in multiple protocols for many environments in a **single cohesive API.** The supported protocols are:
 
 * **CFMail** - Traditional `cfmail` sending
 * **File** - Write emails to disk
@@ -20,11 +20,12 @@ It also sports tons of useful features for mail sending:
 * Async Mail
 * Mail Queues
 * Mail merging of variables
-* Mail attachments, headers and parameters
+* Mail attachments, headers, and parameters
 * View and Layout+View rendering for mail
-* Mail tracking
+* Mail Tracking
 * Multiple mailers
 * Success and Error callbacks
+* `Mailable@cbmailservices` delegate for adding mailing traits to objects.
 * So Much More!
 
 ```javascript
@@ -62,7 +63,7 @@ newMail(
 
 ## Versioning <a href="#versioning" id="versioning"></a>
 
-`cbMailServices` is maintained under the [Semantic Versioning](http://semver.org) guidelines as much as possible. Releases will be numbered with the following format:
+`cbMailServices` is maintained under the [Semantic Versioning](http://semver.org) guidelines as much as possible. Releases will be numbered in the following format:
 
 ```
 <major>.<minor>.<patch>
@@ -88,7 +89,7 @@ Apache 2 License: [http://www.apache.org/licenses/LICENSE-2.0](https://www.apach
 
 ![www.ortussolutions.com](https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-LA-UVvG0NM7NpDzssBL%2F-LA-Uaei0WzTH7Su5CR7%2F-LA-UqN1BRXynZ7RUVO7%2Fortussolutions\_button.png?generation=1523647999385555\&alt=media)
 
-This module is professional open source software backed by [Ortus Solutions, Corp](http://www.ortussolutions.com/services) offering services like:
+This module is professional open-source software backed by [Ortus Solutions, Corp](http://www.ortussolutions.com/services) offering services like:
 
 * Custom Development
 * Professional Support & Mentoring
