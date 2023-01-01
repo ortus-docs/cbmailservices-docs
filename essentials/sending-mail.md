@@ -12,21 +12,21 @@ Please note that the mixin helper can **ONLY** be used in handlers, interceptors
 
 ```javascript
 // Mixin Helper Approach
-newMail( 
+newMail(
 	to         : "email@email.com",
 	from       : "no_reply@ortussolutions.com",
 	subject    : "Mail Services Rock",
 	type       : "html", // Can be plain, html, or text
-	bodyTokens : { 
-		user    : "Luis", 
-		product : "ColdBox", 
+	bodyTokens : {
+		user    : "Luis",
+		product : "ColdBox",
 		link    : event.buildLink( 'home' )
 	}
 )
 .setBody("
     <p>Dear @user@,</p>
     <p>Thank you for downloading @product@, have a great day!</p>
-    <p><a href='@link@'>@link@</a></p> 
+    <p><a href='@link@'>@link@</a></p>
 ")
 .send()
 .onSuccess( function( result, mail ){
@@ -67,21 +67,21 @@ component{
 		...
 
 		variables.mailService
-		.newMail( 
+		.newMail(
 			to         : "email@email.com",
 			from       : "no_reply@ortussolutions.com",
 			subject    : "Mail Services Rock",
 			type       : "html",
-			bodyTokens : { 
-				user    : "Luis", 
-				product : "ColdBox", 
+			bodyTokens : {
+				user    : "Luis",
+				product : "ColdBox",
 				link    : event.buildLink( 'home' )
 			}
 		)
 		.setBody("
 			<p>Dear @user@,</p>
 			<p>Thank you for downloading @product@, have a great day!</p>
-			<p><a href='@link@'>@link@</a></p> 
+			<p><a href='@link@'>@link@</a></p>
 		")
 		.send()
 		.onSuccess( function( result, mail ){
@@ -112,14 +112,14 @@ The `newMail()` or `configure()` method is used to initiate and configure a mail
 
 ```javascript
 variables.mailService
-.newMail( 
+.newMail(
 	to         : "email@email.com",
 	from       : "no_reply@ortussolutions.com",
 	subject    : "Mail Services Rock",
 	type       : "html",
-	bodyTokens : { 
-		user    : "Luis", 
-		product : "ColdBox", 
+	bodyTokens : {
+		user    : "Luis",
+		product : "ColdBox",
 		link    : event.buildLink( 'home' )
 	}
 )
@@ -130,9 +130,9 @@ newMail()
 	from       : "no_reply@ortussolutions.com",
 	subject    : "Mail Services Rock",
 	type       : "html",
-	bodyTokens : { 
-		user    : "Luis", 
-		product : "ColdBox", 
+	bodyTokens : {
+		user    : "Luis",
+		product : "ColdBox",
 		link    : event.buildLink( 'home' )
 	}
 )
@@ -188,39 +188,39 @@ Before sending the mail, the service will replace all the tokens with the specif
 
 ```javascript
 // Via constructor
-newMail( 
+newMail(
 	to         : "email@email.com",
 	from       : "no_reply@ortussolutions.com",
 	subject    : "Mail Services Rock",
 	type       : "html",
-	bodyTokens : { 
-		user    : "Luis", 
-		product : "ColdBox", 
+	bodyTokens : {
+		user    : "Luis",
+		product : "ColdBox",
 		link    : event.buildLink( 'home' )
 	}
 )
 .setBody("
 	<p>Dear @user@,</p>
 	<p>Thank you for downloading @product@, have a great day!</p>
-	<p><a href='@link@'>@link@</a></p> 
+	<p><a href='@link@'>@link@</a></p>
 ")
 .send()
 
 // Body Tokens Method
-newMail( 
+newMail(
 	to         : "email@email.com",
 	subject    : "Mail Services Rock",
 	type       : "html",
 )
-.setBodyTokens( { 
-	user    : "Luis", 
-	product : "ColdBox", 
+.setBodyTokens( {
+	user    : "Luis",
+	product : "ColdBox",
 	link    : event.buildLink( 'home' )
 })
 .setBody("
 	<p>Dear @user@,</p>
 	<p>Thank you for downloading @product@, have a great day!</p>
-	<p><a href='@link@'>@link@</a></p> 
+	<p><a href='@link@'>@link@</a></p>
 ")
 .send()
 ```
@@ -254,20 +254,20 @@ Mail function setView(
 Please note that you can bind your views and layotus with the `args` structure as well. You can also use the `bodyTokens` in your views. Then you can use it in your mail sending goodness:
 
 ```javascript
-newMail( 
+newMail(
 	to         : "email@email.com",
 	subject    : "Mail Services Rock",
 	type       : "html",
 )
-.setBodyTokens( { 
-	user    : "Luis", 
-	product : "ColdBox", 
+.setBodyTokens( {
+	user    : "Luis",
+	product : "ColdBox",
 	link    : event.buildLink( 'home' )
 })
 .setView( view : "emails/newUser" )
 .send()
 
-newMail( 
+newMail(
 	to         : "email@email.com",
 	subject    : "Mail Services Rock",
 	type       : "html",
@@ -323,7 +323,7 @@ You can easily add mail parameters (`cfmailparam`) to a payload so you can attac
 ```javascript
 /**
  * Attach a file or adss a header to the email payload
- * 
+ *
  * @contentID The Identifier for the attached file.
  * @disposition How the attached file is to be handled: attachment, inline
  * @file Attaches file to a message. Mutually exclusive with name argument.
@@ -331,7 +331,7 @@ You can easily add mail parameters (`cfmailparam`) to a payload so you can attac
  * @name The name of the email header to attach. See https://cfdocs.org/cfmailparam. Mututally exclusive with file
  * @value The value of the header
  * @remove Tells ColdFusion to remove any attachments after sucdcesful mail delivery
- * @content Lets you send the contents of a ColdFusion variable as an attachment 
+ * @content Lets you send the contents of a ColdFusion variable as an attachment
  */
 Mail function addMailParam(
 	contentID,
@@ -372,7 +372,7 @@ You can also add mail parts via the `cfmailpart` feature of `cfmail` (https://cf
 ```javascript
 /**
  * Add a new mail part to this mail payload
- * 
+ *
  * @charset The charset of the part, defaults to utf-8
  * @type The valid mime type: text/plain or text/html
  * @wraptext Specifies the maximum line length, in characters of the mail text.
@@ -425,6 +425,6 @@ The `Mail` object has some additional methods to allow you to pass additional in
 mail.setAdditionalInfo( struct );
 mail.getAdditionalInfo();
 
-mail.seavatAdditionalInfoItem( key, value );
+mail.setAdditionalInfoItem( key, value );
 mail.getAdditionalInfoItem( key );
 ```
