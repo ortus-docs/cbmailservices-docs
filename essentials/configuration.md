@@ -12,10 +12,14 @@ moduleSettings = {
         // Default protocol to use, it must be defined in the mailers configuration
         defaultProtocol : "default",
         // Here you can register one or many mailers by name
-        mailers         : { 
+        mailers         : {
             "default" : { class : "CFMail" },
             "files" : { class:"File", properties : { filePath : "/logs" } },
-            "postmark" : { class:"PostMark", properties : { apiKey : "234" } } 
+            "postmark" : { class:"PostMark", properties : { apiKey : "234" } },
+            "mailgun" : { class:"Mailgun", properties : {
+				apiKey : "234",
+				domain: 'mailgun.example.com'
+			} }
         },
         // The defaults for all mail config payloads and protocols
         defaults        : {
@@ -109,7 +113,7 @@ mailers : {
 		class = "Postmark",
 		// Required properties
 		properties = {
-			APIKey = "123"
+			apiKey = "123"
 		}
 	},
 
@@ -118,8 +122,12 @@ mailers : {
 		class = "Mailgun",
 		// Required properties
 		properties = {
-			ApiKey  = '123',
-			domain  = 'mg.somedomain.com'
+			apiKey  = "123",
+			domain  = "mailgun.example.com",
+			// Optional property, defaults to https://api.mailgun.net/v3/
+			// https://documentation.mailgun.com/en/latest/api-intro.html#base-url-1
+			// https://documentation.mailgun.com/en/latest/api-intro.html#mailgun-regions-1
+			baseURL = "https://api.eu.mailgun.net/v3/" // for the EU region
 		}
 	};
 }
