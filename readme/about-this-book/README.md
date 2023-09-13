@@ -2,7 +2,7 @@
 
 The source code for this book is hosted in GitHub:
 
-{% embed url="https://github.com/ortus-docs/cbmailservices-docs" %}
+{% @github-files/github-code-block url="https://github.com/ortus-docs/cbmailservices-docs" %}
 
 You can freely contribute to it and submit pull requests. The contents of this book are copyrighted by [Ortus Solutions, Corp](http://www.ortussolutions.com) and cannot be altered or reproduced without the author's consent. All content is provided _"As-Is"_ and can be freely distributed.
 

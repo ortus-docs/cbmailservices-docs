@@ -1,8 +1,14 @@
+---
+description: Let's get up and running!
+---
+
 # Configuration
 
 ### Application Configuration
 
-You can configure the module by creating a `cbmailservices` key under the `moduleSettings` structure in the `config/Coldbox.cfc` file. Here you will configure all the different mailers, default protocol, default sending settings and so much more.
+You can configure the module by creating a `cbmailservices` key under the `moduleSettings` structure in the `config/Coldbox.cfc` file or the new ColdBox 7 approach of creating a `config/modules/cbmailservices.cfc`&#x20;
+
+Here, you will configure all the different mailers, default protocol, default sending settings, and more.
 
 ```javascript
 moduleSettings = {
@@ -44,7 +50,7 @@ The `tokenMarker` is used when doing mail merges with variables. The service wil
 
 #### DefaultProtocol
 
-The name of the mailer key that will be used by default to send mail. The default is called `default`.
+The name of the mailer key will be used by default to send mail. The default is called `default`.
 
 #### Mailers
 
@@ -59,11 +65,11 @@ mailerKey : {
 
 #### Defaults
 
-A structure of default variables will be seeded into the Mail payload. These are then used by the protocols as defaults. For example, the `CFMail` protocol will use all these as defaults to the `cfmail` tag.
+A structure of default variables will be seeded into the Mail payload. The protocols then use these as defaults. For example, the `CFMail` protocol will use all these as defaults to the `cfmail` tag.
 
 #### **RunQueueTask**
 
-By default, a task runs every minute to facilitate the sending of emails asynchronously (non-blocking). Setting runQueueTask to false will override the default and the task will not run.&#x20;
+By default, a task runs every minute to facilitate sending emails asynchronously (non-blocking). Setting runQueueTask to false will override the default, and the task will not run.
 
 ### Mail Protocols
 
@@ -76,7 +82,9 @@ The mail services can send mail via different protocols. The available protocol 
 * `Mailgun`
 * `Postmark`
 
-> Please note that some of the protocol have property requirements.
+{% hint style="warning" %}
+Please note that some of the protocols have property requirements.
+{% endhint %}
 
 ```javascript
 defaultProtocol : "default",
@@ -135,7 +143,7 @@ mailers : {
 
 #### Mailer WireBox ID
 
-You can also register _ANY_ WireBox ID or classpath as the mailer as well. This will allow you to register mailers that come from your application or any other module.
+You can also register _ANY_ WireBox ID or classpath as the mailer. This will allow you to register mailers from your application or any other module.
 
 ```jsx
 moduleSettings = {

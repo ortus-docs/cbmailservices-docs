@@ -1,4 +1,8 @@
-# Sending Mail
+---
+description: Up up and away!
+---
+
+# 📧 Sending Mail
 
 You can initiate a mail payload via the mixin helper (`newMail()`) or via the injected mail service's `newMail()` method. The arguments you pass into this method will be used to seed the payload with all the arguments passed to the `cfmail` tag or the chosen protocol properties. You can also pass an optional `mailer` argument that will override the `default` protocol to one of your likings.
 
@@ -39,7 +43,7 @@ newMail(
 
 ## Delegate
 
-If you are using ColdBox 7 you can use the `Mailable@cbMailservices` delegate to add mailing capabilities to ANY model managed by WireBox.  It will add the `newMail()` method to your objects:
+If you are using ColdBox 7 you can use the `Mailable@cbMailservices` delegate to add mailing capabilities to ANY model managed by WireBox. It will add the `newMail()` method to your objects:
 
 ```javascript
 component name="UserService" delegates="Mailable@cbMailservices"{
@@ -98,17 +102,17 @@ component{
 
 ## Mail Payload
 
-The return of the `newMail()` calls will be a `Mail` payload object of type `cbmailservices.models.Mail`.  You can find all the full API Docs here:
+The return of the `newMail()` calls will be a `Mail` payload object of type `cbmailservices.models.Mail`. You can find all the full API Docs here:
 
 {% embed url="https://s3.amazonaws.com/apidocs.ortussolutions.com/coldbox-modules/cbmailservices/2.0.0/models/Mail.html" %}
 cbmailservices.models.Mail
 {% endembed %}
 
-This object will be used to set properties that the mail protocols can use to send mail.  We also have several utility methods that can be used to set mail headers, attachments, read receipts, send receipts and so much more.  Let's start investigating the Mail Payload Object.
+This object will be used to set properties that the mail protocols can use to send mail. We also have several utility methods that can be used to set mail headers, attachments, read receipts, send receipts and so much more. Let's start investigating the Mail Payload Object.
 
 ### Constructor
 
-The `newMail()` or `configure()` method is used to initiate and configure a mail payload.  Any argument you pass into these methods will be used to seed the mail `config` property which is used by all protocols to send email out.  Example, the `cfmail` protocol will read all those properties and pass them as an attribute collection to the `cfmail` tag.
+The `newMail()` or `configure()` method is used to initiate and configure a mail payload. Any argument you pass into these methods will be used to seed the mail `config` property which is used by all protocols to send email out. Example, the `cfmail` protocol will read all those properties and pass them as an attribute collection to the `cfmail` tag.
 
 ```javascript
 variables.mailService
@@ -140,7 +144,7 @@ newMail()
 
 ### Send()
 
-You will leverage the `send()` method to initiate a call to the mail protocols to deliver your mail using your payload.  You can then tap into the results of the mailing via the mail [callbacks](sending-mail.md#callbacks) or the [mail helper methods](sending-mail.md#mail-helper-methods).  Please also note that the sending operation [announces two interceptions](../advanced/mail-events.md) points (`preMailSend, postMailSend`) that you can use to influence the mail payload or listen to mail results.
+You will leverage the `send()` method to initiate a call to the mail protocols to deliver your mail using your payload. You can then tap into the results of the mailing via the mail [callbacks](sending-mail.md#callbacks) or the [mail helper methods](sending-mail.md#mail-helper-methods). Please also note that the sending operation [announces two interceptions](../advanced/mail-events.md) points (`preMailSend, postMailSend`) that you can use to influence the mail payload or listen to mail results.
 
 ### Callbacks
 
@@ -178,7 +182,7 @@ newMail()
 
 ### Body Tokens
 
-The mail service allows you to register a structure of tokens that can be replaced by key name on the **body** content for you. The tokens are demarcated by the `tokenMarker` setting which defaults to `@`.  Here is the token pattern:
+The mail service allows you to register a structure of tokens that can be replaced by key name on the **body** content for you. The tokens are demarcated by the `tokenMarker` setting which defaults to `@`. Here is the token pattern:
 
 ```js
 @tokenName@
@@ -278,7 +282,7 @@ newMail(
 
 ## Mail Attachments
 
-You can easily add mail attachments using mail params (next section) directly or our fancy helper method called `addAttachments()`.&#x20;
+You can easily add mail attachments using mail params (next section) directly or our fancy helper method called `addAttachments()`.
 
 ### Signature
 

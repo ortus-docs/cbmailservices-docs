@@ -63,7 +63,7 @@ If no `defaultProtocol` is added and no `mailers` then the mail services module 
 
 ### Mail bean returned from send() method
 
-Previous a struct containing `error` and `errorArray` would be returned from the `send()` method.  Now, the `Mail` bean is returned (whether using `mail.send()` or `mailService.send( mail )`). The previously available struct can be accessed using `mail.getResults()`. (Be sure to see the [changes to the `errorArray` name below](whats-new-with-2.0.0.md#no-more-errorarray).)
+Previous a struct containing `error` and `errorArray` would be returned from the `send()` method. Now, the `Mail` bean is returned (whether using `mail.send()` or `mailService.send( mail )`). The previously available struct can be accessed using `mail.getResults()`. (Be sure to see the [changes to the `errorArray` name below](whats-new-with-2.0.0.md#no-more-errorarray).)
 
 ### No More `errorArray`
 
@@ -87,7 +87,7 @@ mailService
 
 The return message identifier from postmark has been renamed from `message_id` to `messageID` to be consistent with the postmark API results.
 
-***
+
 
 ## New Features and Improvements
 
