@@ -29,8 +29,8 @@ moduleSettings = {
         },
         // The defaults for all mail config payloads and protocols
         defaults        : {
-            from : "info@ortussolutions.com",
-            cc : "sales@ortussolutions.com"
+            from : "info@mydomain.com",
+            cc : "sales@mydomain.com"
         },
 	//Whether the scheduled task is running or not
 	runQueueTask	: true

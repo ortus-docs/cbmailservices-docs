@@ -11,7 +11,7 @@ You can easily send mail asynchronously via the [ColdBox Async Manager](https://
 ```javascript
 newMail( 
 	to         : "email@email.com",
-	from       : "no_reply@ortussolutions.com",
+	from       : "no_reply@mydomain.com",
 	subject    : "Mail Services Rock",
 	type       : "html",
 	bodyTokens : { 
@@ -39,7 +39,7 @@ You can also detach the mail and let the cbmailservices Mail Queue send it for y
 ```javascript
 var mailId = newMail( 
 	to         : "email@email.com",
-	from       : "no_reply@ortussolutions.com",
+	from       : "no_reply@mydomain.com",
 	subject    : "Mail Services Rock",
 	type       : "html",
 	bodyTokens : { 

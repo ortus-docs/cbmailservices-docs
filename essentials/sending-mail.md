@@ -18,7 +18,7 @@ Please note that the mixin helper can **ONLY** be used in handlers, interceptors
 // Mixin Helper Approach
 newMail(
 	to         : "email@email.com",
-	from       : "no_reply@ortussolutions.com",
+	from       : "no_reply@mydomain.com",
 	subject    : "Mail Services Rock",
 	type       : "html", // Can be plain, html, or text
 	bodyTokens : {
@@ -73,7 +73,7 @@ component{
 		variables.mailService
 		.newMail(
 			to         : "email@email.com",
-			from       : "no_reply@ortussolutions.com",
+			from       : "no_reply@mydomain.com",
 			subject    : "Mail Services Rock",
 			type       : "html",
 			bodyTokens : {
@@ -118,7 +118,7 @@ The `newMail()` or `configure()` method is used to initiate and configure a mail
 variables.mailService
 .newMail(
 	to         : "email@email.com",
-	from       : "no_reply@ortussolutions.com",
+	from       : "no_reply@mydomain.com",
 	subject    : "Mail Services Rock",
 	type       : "html",
 	bodyTokens : {
@@ -131,7 +131,7 @@ variables.mailService
 newMail()
 .configure(
 	to         : "email@email.com",
-	from       : "no_reply@ortussolutions.com",
+	from       : "no_reply@mydomain.com",
 	subject    : "Mail Services Rock",
 	type       : "html",
 	bodyTokens : {
@@ -194,7 +194,7 @@ Before sending the mail, the service will replace all the tokens with the specif
 // Via constructor
 newMail(
 	to         : "email@email.com",
-	from       : "no_reply@ortussolutions.com",
+	from       : "no_reply@mydomain.com",
 	subject    : "Mail Services Rock",
 	type       : "html",
 	bodyTokens : {
