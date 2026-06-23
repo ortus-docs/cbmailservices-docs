@@ -8,7 +8,7 @@ description: cbMailServices is a module to send email in a fluent and abstracted
 
 Sending emails doesn't have to be complicated or archaic. The ColdBox Mail Services (`cbmailservices`) module will allow you to send emails in a _fluent_ and _abstract_ way in multiple protocols for many environments in a **single cohesive API.** The supported protocols are:
 
-* **CFMail** - Traditional `cfmail` sending
+* **Engine Mail** - Leverages the Engine's mail component (BoxLang => `bx:mail`, CFML => `cfmail`)
 * **File** - Write emails to disk
 * **InMemory** - Store email mementos in an array. Perfect for testing.
 * **Null** - Ignores emails sent to it.
@@ -29,37 +29,38 @@ It also sports tons of useful features for mail sending:
 * So Much More!
 
 ```javascript
-newMail( 
+newMail(
 	to         : "email@email.com",
 	from       : "no_reply@ortussolutions.com",
 	subject    : "Mail Services Rock",
 	type       : "html", // Can be plain, html, or text
-	bodyTokens : { 
-		user    : "Luis", 
-		product : "ColdBox", 
+	bodyTokens : {
+		user    : "Luis",
+		product : "ColdBox",
 		link    : event.buildLink( 'home' )
 	}
 )
 .setBody("
     <p>Dear @user@,</p>
     <p>Thank you for downloading @product@, have a great day!</p>
-    <p><a href='@link@'>@link@</a></p> 
+    <p><a href='@link@'>@link@</a></p>
 ")
 .addAttachment( expandPath( "/tmp/reports/report.pdf" ) )
 .setReadReceipt( "myemail@email.com" )
 .send()
-.onSuccess( function( result, mail ){
+.onSuccess( ( result, mail ) => {
 	// Process the success
 })
-.onError( function( result, mail ){
+.onError( ( result, mail ) => {
 	// Process the error
-});
+})
 ```
 
 ## System Requirements
 
-* Lucee 5+
-* Adobe ColdFusion 2018+
+* BoxLang 1.0+ (Preferred)
+* Lucee 6+
+* Adobe ColdFusion 2023+
 
 ## Versioning <a href="#versioning" id="versioning"></a>
 
@@ -104,4 +105,3 @@ This module is professional open-source software backed by [Ortus Solutions, Cor
 Because of His grace, this project exists. If you don't like this, then don't read it, it's not for you.
 
 > "Therefore being justified by **faith**, we have peace with God through our Lord Jesus Christ: By whom also we have access by **faith** into this **grace** wherein we stand, and rejoice in hope of the glory of God." Romans 5:5
-
