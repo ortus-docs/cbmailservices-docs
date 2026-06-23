@@ -2,6 +2,7 @@
 
 * [Introduction](README.md)
   * [Release History](readme/release-history/README.md)
+    * [What's New With 2.9.0](readme/release-history/whats-new-with-2.9.0.md)
     * [What's New With 2.8.0](readme/release-history/whats-new-with-2.8.0.md)
     * [What's New With 2.7.x](readme/release-history/whats-new-with-2.7.x.md)
     * [What's New With 2.6](readme/release-history/whats-new-with-2.6.md)
