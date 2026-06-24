@@ -17,10 +17,10 @@ class extends="coldbox.system.Interceptor"{
 
         if(environment eq 'development'){
             //change recipient if we are on development
-            data.mail.setTo('johndoe@example.com');  
+            data.mail.setTo('johndoe@example.com');
             //prefix the subject if we are on development
             data.mail.setSubject('<DEV-#appName#> #data.mail.getSubject()#');
-        }       
+        }
     }
 
     function postMailSend( event, data, buffer, rc, prc ){
@@ -47,10 +47,10 @@ component extends="coldbox.system.Interceptor"{
 
         if(environment eq 'development'){
             //change recipient if we are on development
-            data.mail.setTo('johndoe@example.com');  
+            data.mail.setTo('johndoe@example.com');
             //prefix the subject if we are on development
             data.mail.setSubject('<DEV-#appName#> #data.mail.getSubject()#');
-        }       
+        }
     }
 
     function postMailSend( event, data, buffer, rc, prc ){
@@ -84,4 +84,3 @@ Announced after the mail payload has been sent via the mailer protocol of choice
 | -------- | ------ | ---------------------------------------------------------------------------------------------------------------------- |
 | `mail`   | Mail   | The mail payload object                                                                                                |
 | `result` | struct | The result structure from the mailer protocol.  At most it will contain an `error` boolean key and a `messages` array. |
-

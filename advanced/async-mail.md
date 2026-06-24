@@ -9,21 +9,21 @@ You can easily send mail asynchronously via the [ColdBox Async Manager](https://
 {% embed url="https://coldbox.ortusbooks.com/digging-deeper/promises-async-programming" %}
 
 ```javascript
-newMail( 
+newMail(
 	to         : "email@email.com",
 	from       : "no_reply@mydomain.com",
 	subject    : "Mail Services Rock",
 	type       : "html",
-	bodyTokens : { 
-		user    : "Luis", 
-		product : "ColdBox", 
+	bodyTokens : {
+		user    : "Luis",
+		product : "ColdBox",
 		link    : event.buildLink( 'home' )
 	}
 )
 .setBody("
     <p>Dear @user@,</p>
     <p>Thank you for downloading @product@, have a great day!</p>
-    <p><a href='@link@'>@link@</a></p> 
+    <p><a href='@link@'>@link@</a></p>
 ")
 .sendAsync()
 .then( function( mail ){
@@ -37,21 +37,21 @@ newMail(
 You can also detach the mail and let the cbmailservices Mail Queue send it for you. The module's mail scheduler runs on a one-minute interval and will send any mail found in the processing queue. All you need to do is use the `queue()` method and be done!
 
 ```javascript
-var mailId = newMail( 
+var mailId = newMail(
 	to         : "email@email.com",
 	from       : "no_reply@mydomain.com",
 	subject    : "Mail Services Rock",
 	type       : "html",
-	bodyTokens : { 
-		user    : "Luis", 
-		product : "ColdBox", 
+	bodyTokens : {
+		user    : "Luis",
+		product : "ColdBox",
 		link    : event.buildLink( 'home' )
 	}
 )
 .setBody("
     <p>Dear @user@,</p>
     <p>Thank you for downloading @product@, have a great day!</p>
-    <p><a href='@link@'>@link@</a></p> 
+    <p><a href='@link@'>@link@</a></p>
 ")
 .queue();
 ```
