@@ -4,39 +4,116 @@ description: Let's get up and running!
 
 # Configuration
 
-### Application Configuration
+There are two ways to configure cbmailservices in your application:
 
-You can configure the module by creating a `cbmailservices` key under the `moduleSettings` structure in the `config/Coldbox.cfc` file or the new ColdBox 7 approach of creating a `config/modules/cbmailservices.cfc`&#x20;
-
-Here, you will configure all the different mailers, default protocol, default sending settings, and more.
+{% tabs %}
+{% tab title="ColdBox.cfc / ColdBox.bx" %}
+Add a `cbmailservices` key under the `moduleSettings` structure in your `config/ColdBox.cfc` (CFML) or `config/ColdBox.bx` (BoxLang):
 
 ```javascript
+// config/ColdBox.cfc or config/ColdBox.bx
 moduleSettings = {
-    cbmailServices = {
+    cbmailservices = {
         // The default token Marker Symbol
         tokenMarker     : "@",
         // Default protocol to use, it must be defined in the mailers configuration
         defaultProtocol : "default",
         // Here you can register one or many mailers by name
         mailers         : {
-            "default" : { class : "CFMail" },
-            "files" : { class:"File", properties : { filePath : "/logs" } },
-            "postmark" : { class:"PostMark", properties : { apiKey : "234" } },
-            "mailgun" : { class:"Mailgun", properties : {
-				apiKey : "234",
-				domain: 'mailgun.example.com'
-			} }
+            "default"  : { class : "CFMail" },
+            "files"    : { class : "File",    properties : { filePath : "/logs" } },
+            "postmark" : { class : "Postmark", properties : { apiKey : "234" } },
+            "mailgun"  : { class : "Mailgun",  properties : {
+                apiKey : "234",
+                domain : "mailgun.example.com"
+            } }
         },
         // The defaults for all mail config payloads and protocols
-        defaults        : {
+        defaults : {
             from : "info@mydomain.com",
-            cc : "sales@mydomain.com"
+            cc   : "sales@mydomain.com"
         },
-	//Whether the scheduled task is running or not
-	runQueueTask	: true
+        // Whether the scheduled task is running or not
+        runQueueTask : true
     }
+};
+```
+{% endtab %}
+
+{% tab title="Module Config Override (cfc)" %}
+Create a dedicated configuration file at `config/modules/cbmailservices.cfc`. This approach keeps the mail configuration separate from your main application configuration.
+
+```javascript
+// config/modules/cbmailservices.cfc
+component {
+
+    function configure(){
+        return {
+            // The default token Marker Symbol
+            tokenMarker     : "@",
+            // Default protocol to use, it must be defined in the mailers configuration
+            defaultProtocol : "default",
+            // Here you can register one or many mailers by name
+            mailers         : {
+                "default"  : { class : "CFMail" },
+                "files"    : { class : "File",    properties : { filePath : "/logs" } },
+                "postmark" : { class : "Postmark", properties : { apiKey : "234" } },
+                "mailgun"  : { class : "Mailgun",  properties : {
+                    apiKey : "234",
+                    domain : "mailgun.example.com"
+                } }
+            },
+            // The defaults for all mail config payloads and protocols
+            defaults : {
+                from : "info@mydomain.com",
+                cc   : "sales@mydomain.com"
+            },
+            // Whether the scheduled task is running or not
+            runQueueTask : true
+        }
+    }
+
 }
 ```
+{% endtab %}
+
+{% tab title="Module Config Override (bx)" %}
+For BoxLang applications, create a `config/modules/cbmailservices.bx` file with the same structure:
+
+```java
+// config/modules/cbmailservices.bx
+class {
+
+    function configure(){
+        return {
+            // The default token Marker Symbol
+            tokenMarker     : "@",
+            // Default protocol to use, it must be defined in the mailers configuration
+            defaultProtocol : "default",
+            // Here you can register one or many mailers by name
+            mailers         : {
+                "default"  : { class : "CFMail" },
+                "files"    : { class : "File",    properties : { filePath : "/logs" } },
+                "postmark" : { class : "Postmark", properties : { apiKey : "234" } },
+                "mailgun"  : { class : "Mailgun",  properties : {
+                    apiKey : "234",
+                    domain : "mailgun.example.com"
+                } }
+            },
+            // The defaults for all mail config payloads and protocols
+            defaults : {
+                from : "info@mydomain.com",
+                cc   : "sales@mydomain.com"
+            },
+            // Whether the scheduled task is running or not
+            runQueueTask : true
+        }
+    }
+
+}
+```
+{% endtab %}
+{% endtabs %}
 
 By default, the mail services are configured to send mail via the `cfmail` tag using a mailer called `default`.
 
@@ -67,9 +144,9 @@ mailerKey : {
 
 A structure of default variables will be seeded into the Mail payload. The protocols then use these as defaults. For example, the `CFMail` protocol will use all these as defaults to the `cfmail` tag.
 
-#### **RunQueueTask**
+#### RunQueueTask
 
-By default, a task runs every minute to facilitate sending emails asynchronously (non-blocking). Setting runQueueTask to false will override the default, and the task will not run.
+By default, a task runs every minute to facilitate sending emails asynchronously (non-blocking). Setting `runQueueTask` to `false` will override the default, and the task will not run.
 
 ### Mail Protocols
 
@@ -95,49 +172,49 @@ mailers : {
 	},
 
 	// FileProtocol
-	"files" = {
-		class = "File",
+	"files" : {
+		class : "File",
 		// Required Properties
-		properties = {
-			filePath = "logs",
-			autoExpand = true
+		properties : {
+			filePath   : "logs",
+			autoExpand : true
 		}
 	},
 
 	// NullProtocol
-	"null" = {
-		class = "Null",
-		properties = {}
+	"null" : {
+		class      : "Null",
+		properties : {}
 	},
 
 	// InMemoryProtocol
-	"memory" = {
-		class = "InMemory",
-		properties = {}
+	"memory" : {
+		class      : "InMemory",
+		properties : {}
 	},
 
-	// PostMark
-	"postmark" = {
-		class = "Postmark",
+	// Postmark
+	"postmark" : {
+		class : "Postmark",
 		// Required properties
-		properties = {
-			apiKey = "123"
+		properties : {
+			apiKey : "123"
 		}
 	},
 
-	// MailGun
-	"mailgun" = {
-		class = "Mailgun",
+	// Mailgun
+	"mailgun" : {
+		class : "Mailgun",
 		// Required properties
-		properties = {
-			apiKey  = "123",
-			domain  = "mailgun.example.com",
+		properties : {
+			apiKey  : "123",
+			domain  : "mailgun.example.com",
 			// Optional property, defaults to https://api.mailgun.net/v3/
 			// https://documentation.mailgun.com/en/latest/api-intro.html#base-url-1
 			// https://documentation.mailgun.com/en/latest/api-intro.html#mailgun-regions-1
-			baseURL = "https://api.eu.mailgun.net/v3/" // for the EU region
+			baseURL : "https://api.eu.mailgun.net/v3/" // for the EU region
 		}
-	};
+	}
 }
 ```
 
@@ -145,9 +222,9 @@ mailers : {
 
 You can also register _ANY_ WireBox ID or classpath as the mailer. This will allow you to register mailers from your application or any other module.
 
-```jsx
+```javascript
 moduleSettings = {
-	cbMailservices : {
+	cbmailservices : {
 		defaultProtocol : "default",
 		mailers : {
 			"default" : { class : "CFmail" },
@@ -155,5 +232,22 @@ moduleSettings = {
 			"amazon" : { class : "Mailer@amazonsns" }
 		}
 	}
+}
+```
+
+Or using a module config override:
+
+```javascript
+// config/modules/cbmailservices.cfc
+component {
+    function configure(){
+        return {
+            defaultProtocol : "default",
+            mailers : {
+                "default" : { class : "CFmail" },
+                "amazon"  : { class : "Mailer@amazonsns" }
+            }
+        };
+    }
 }
 ```
