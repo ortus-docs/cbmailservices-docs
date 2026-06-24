@@ -2,6 +2,39 @@
 
 The module will register two [interception points.](https://coldbox.ortusbooks.com/the-basics/interceptors) `PreMailSend` and `PostMailSend`. These interception points are useful to alter the mail object before it gets sent out, and/or perform any functions after the mail gets sent out. An example interceptor would be:
 
+{% tabs %}
+{% tab title="BoxLang" %}
+
+```java
+class extends="coldbox.system.Interceptor"{
+
+    void function configure(){
+    }
+
+    function preMailSend( event, data, buffer, rc, prc ){
+        var environment = getSetting('environment');
+        var appName = getSetting('appName');
+
+        if(environment eq 'development'){
+            //change recipient if we are on development
+            data.mail.setTo('johndoe@example.com');  
+            //prefix the subject if we are on development
+            data.mail.setSubject('<DEV-#appName#> #data.mail.getSubject()#');
+        }       
+    }
+
+    function postMailSend( event, data, buffer, rc, prc ){
+        if( data.result.error ){
+            //log mail failure here...
+        }
+    }
+
+}
+```
+{% endtab %}
+
+{% tab title="CFML" %}
+
 ```javascript
 component extends="coldbox.system.Interceptor"{
 
@@ -28,6 +61,8 @@ component extends="coldbox.system.Interceptor"{
 
 }
 ```
+{% endtab %}
+{% endtabs %}
 
 ### preMailSend
 

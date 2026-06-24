@@ -62,12 +62,12 @@ The `queue`method will return back a task ID guid, which you can use to track th
 
 The mail scheduler is on by default for convenience but is only needed when using the asynchronous mail feature. It can be turned off, if desired, by these steps:
 
-1. Open config/coldbox.cfc
-2. In the modulesSettings section, add a key for cbmailServices with the property `runQueueTask` set to `false`. See the [Configuration ](../essentials/configuration.md#runqueuetask)section for more details.
+1. Open `config/ColdBox.cfc` (CFML) or `config/ColdBox.bx` (BoxLang)
+2. In the modulesSettings section, add a key for `cbmailservices` with the property `runQueueTask` set to `false`. See the [Configuration ](../essentials/configuration.md#runqueuetask)section for more details.
 
 ```
 moduleSettings = {
-	cbmailServices : {
+	cbmailservices : {
 		runQueueTask: false
 	}
 }

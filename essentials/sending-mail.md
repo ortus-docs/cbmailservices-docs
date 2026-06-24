@@ -45,6 +45,22 @@ newMail(
 
 If you are using ColdBox 7 you can use the `Mailable@cbMailservices` delegate to add mailing capabilities to ANY model managed by WireBox. It will add the `newMail()` method to your objects:
 
+{% tabs %}
+{% tab title="BoxLang" %}
+
+```java
+class name="UserService" delegates="Mailable@cbMailservices"{
+
+  ...
+    newMail()
+      .send();
+
+}
+```
+{% endtab %}
+
+{% tab title="CFML" %}
+
 ```javascript
 component name="UserService" delegates="Mailable@cbMailservices"{
 
@@ -54,10 +70,59 @@ component name="UserService" delegates="Mailable@cbMailservices"{
 
 }
 ```
+{% endtab %}
+{% endtabs %}
 
 ## MailService
 
 Use the WireBox ID of `MailService@cbmailservices` to inject the service in any model object to send mail from your models.
+
+{% tabs %}
+{% tab title="BoxLang" %}
+
+```java
+class{
+
+	property name="mailService" inject="MailService@cbmailservices";
+
+	...
+
+	function submitOrder( required order ){
+
+		...
+
+		variables.mailService
+		.newMail(
+			to         : "email@email.com",
+			from       : "no_reply@mydomain.com",
+			subject    : "Mail Services Rock",
+			type       : "html",
+			bodyTokens : {
+				user    : "Luis",
+				product : "ColdBox",
+				link    : event.buildLink( 'home' )
+			}
+		)
+		.setBody("
+			<p>Dear @user@,</p>
+			<p>Thank you for downloading @product@, have a great day!</p>
+			<p><a href='@link@'>@link@</a></p>
+		")
+		.send()
+		.onSuccess( function( result, mail ){
+			// Process the success
+		})
+		.onError( function( result, mail ){
+			// Process the error
+		});
+
+	}
+
+}
+```
+{% endtab %}
+
+{% tab title="CFML" %}
 
 ```javascript
 component{
@@ -99,6 +164,8 @@ component{
 
 }
 ```
+{% endtab %}
+{% endtabs %}
 
 ## Mail Payload
 
@@ -293,7 +360,7 @@ Here is our method signature:
  * Add attachment(s) to this payload using a list or array of file locations
  *
  * @files A list or array of files to attach to this payload
- * @remove If true, ColdFusion removes attachment files (if any) after the mail is successfully delivered.
+ * @remove If true, the engine will remove attachment files (if any) after the mail is successfully delivered.
  */
 Mail function addAttachments( required files, boolean remove = false )
 ```
@@ -320,7 +387,7 @@ newMail(
 
 ## Mail Params
 
-You can easily add mail parameters (`cfmailparam`) to a payload so you can attach headers or files to the message by using the `addMailParam()` method. Please see the https://cfdocs.org/cfmailparam cfmail param docs for more information.
+You can easily add mail parameters (`bx:mailparam` / `cfmailparam`) to a payload so you can attach headers or files to the message by using the `addMailParam()` method. Please see the [mail param docs](https://cfdocs.org/cfmailparam) for more information.
 
 ### **Signature**
 
@@ -332,10 +399,10 @@ You can easily add mail parameters (`cfmailparam`) to a payload so you can attac
  * @disposition How the attached file is to be handled: attachment, inline
  * @file Attaches file to a message. Mutually exclusive with name argument.
  * @type The MIME media type for the attachment.
- * @name The name of the email header to attach. See https://cfdocs.org/cfmailparam. Mututally exclusive with file
+ * @name The name of the email header to attach. See https://cfdocs.org/cfmailparam. Mutually exclusive with file
  * @value The value of the header
- * @remove Tells ColdFusion to remove any attachments after sucdcesful mail delivery
- * @content Lets you send the contents of a ColdFusion variable as an attachment
+ * @remove Tells the engine to remove any attachments after successful mail delivery
+ * @content Lets you send the contents of a variable as an attachment
  */
 Mail function addMailParam(
 	contentID,
@@ -369,7 +436,7 @@ newMail()
 
 ## Mail Parts
 
-You can also add mail parts via the `cfmailpart` feature of `cfmail` (https://cfdocs.org/cfmailpart). This allows you to build multi-parted emails.
+You can also add mail parts via the `bx:mailpart` / `cfmailpart` feature of the engine's mail component ([cfdocs](https://cfdocs.org/cfmailpart)). This allows you to build multi-parted emails.
 
 ### **Signature**
 
