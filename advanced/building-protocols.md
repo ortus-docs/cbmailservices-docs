@@ -1,3 +1,8 @@
+---
+description: Build your own mail protocol to deliver mail through any provider.
+icon: hammer
+---
+
 # Building Protocols
 
 If you want to build your own protocol you will have to do the following
@@ -74,6 +79,10 @@ struct function send( required cbmailservices.models.Mail payload ){
 ```
 {% endtab %}
 {% endtabs %}
+
+{% hint style="success" %}
+Already have a provider class? Register it by WireBox ID or class path in `mailers`, see [Mailer WireBox ID](../essentials/configuration.md#mailer-wirebox-id). The [bundled protocols](../protocols/README.md) are good references.
+{% endhint %}
 
 {% hint style="info" %}
 The module ships with the `BXMail` protocol (BoxLang's `bx:mail`) and `CFMail` protocol (CFML's `cfmail`). If you're using BoxLang, extend from a `.bx` class file; for CFML engines, use a `.cfc` component file.

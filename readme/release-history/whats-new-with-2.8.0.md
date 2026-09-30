@@ -1,5 +1,6 @@
 ---
 description: September 13, 2023
+icon: flask
 ---
 
 # What's New With 2.8.0

@@ -1,3 +1,8 @@
+---
+description: How this book is hosted, licensed and how to contribute.
+icon: book
+---
+
 # About This Book
 
 The source code for this book is hosted in GitHub:

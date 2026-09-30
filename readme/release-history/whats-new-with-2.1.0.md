@@ -1,5 +1,6 @@
 ---
 description: May 17, 2022
+icon: bolt
 ---
 
 # What's New With 2.1.0

@@ -1,3 +1,8 @@
+---
+description: Send mail on background threads or hand it to the built-in mail queue.
+icon: clock
+---
+
 # Async Mail
 
 The module allows you to either send mail asynchronously or queue it in an in-memory queue so it can be delivered by the mail services scheduler.  So let's explore the asynchronous nature of cbmailservices.
