@@ -1,5 +1,6 @@
 ---
 description: cbMailServices is a module to send email in a fluent and abstracted approach.
+icon: house
 ---
 
 # Introduction
@@ -8,12 +9,13 @@ description: cbMailServices is a module to send email in a fluent and abstracted
 
 Sending emails doesn't have to be complicated or archaic. The ColdBox Mail Services (`cbmailservices`) module will allow you to send emails in a _fluent_ and _abstract_ way in multiple protocols for many environments in a **single cohesive API.** The supported protocols are:
 
-* **Engine Mail** - Leverages the Engine's mail component (BoxLang => `bx:mail`, CFML => `cfmail`)
-* **File** - Write emails to disk
-* **InMemory** - Store email mementos in an array. Perfect for testing.
-* **Null** - Ignores emails sent to it.
-* **Postmark** - Send via the PostMark API Service ([https://postmarkapp.com/](https://postmarkapp.com/))
-* **Mailgun** - Send via the MailGun API Service ([https://www.mailgun.com/](https://www.mailgun.com/))
+* **[BXMail](protocols/bxmail.md)** - BoxLang's native `bx:mail`
+* **[CFMail](protocols/cfmail.md)** - The CFML `cfmail` tag
+* **[File](protocols/file.md)** - Write emails to disk and browse them in the [development mail viewer](essentials/development-mail-viewer.md)
+* **[InMemory](protocols/inmemory.md)** - Store email mementos in an array. Perfect for testing.
+* **[Null](protocols/null.md)** - Ignores emails sent to it.
+* **[Postmark](protocols/postmark.md)** - Send via the PostMark API Service ([https://postmarkapp.com/](https://postmarkapp.com/))
+* **[Mailgun](protocols/mailgun.md)** - Send via the MailGun API Service ([https://www.mailgun.com/](https://www.mailgun.com/))
 
 It also sports tons of useful features for mail sending:
 
@@ -23,6 +25,7 @@ It also sports tons of useful features for mail sending:
 * Mail attachments, headers, and parameters
 * View and Layout+View rendering for mail
 * Mail Tracking
+* A local, development-only [mail viewer](essentials/development-mail-viewer.md) with search, preview and dark mode
 * Multiple mailers
 * Success and Error callbacks
 * `Mailable@cbmailservices` delegate for adding mailing traits to objects.

@@ -1,5 +1,6 @@
 ---
 description: November 2021
+icon: rocket
 ---
 
 # What's New With 2.0.0

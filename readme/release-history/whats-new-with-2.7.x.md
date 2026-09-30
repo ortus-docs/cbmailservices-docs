@@ -1,5 +1,6 @@
 ---
 description: January 16, 2023
+icon: bolt
 ---
 
 # What's New With 2.7.x

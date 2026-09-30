@@ -1,5 +1,6 @@
 ---
-description: Up up and away!
+description: Create and send mail with the newMail() helper, the MailService or the Mailable delegate.
+icon: paper-plane
 ---
 
 # 📧 Sending Mail
@@ -171,7 +172,7 @@ component{
 
 The return of the `newMail()` calls will be a `Mail` payload object of type `cbmailservices.models.Mail`. You can find all the full API Docs here:
 
-{% embed url="https://s3.amazonaws.com/apidocs.ortussolutions.com/coldbox-modules/cbmailservices/2.0.0/models/Mail.html" %}
+{% embed url="https://s3.amazonaws.com/apidocs.ortussolutions.com/coldbox-modules/cbmailservices/2.13.0/models/Mail.html" %}
 cbmailservices.models.Mail
 {% endembed %}
 
@@ -483,10 +484,23 @@ We have also registered several methods to help you when sending mail:
 * `setHtml( body )` - Set a multi-part body for html
 * `setText( body )` - Set a multi-part body for text
 * `addAttachments( files, remove=false)` - Easily add attachments
-* `getMemento()` - Get the entire mail settings for the payload
+* `getConfig()` - Get the entire mail settings struct for the payload
+* `getMemento()` - **Deprecated**, use `getConfig()`
+* `validate():boolean` - Verifies `from`, `to`, `subject` and a body or mail part are set
+* `validateOrFail()` - Same as `validate()` but throws an `InvalidMailException`
 * `hasErrors():boolean` - Verifies if there are any errors in the mailing
 * `getResultMessages():array` - Get's the array of messages of the sending of the mail
 * `getResults():struct` - Get the structure of the results of sending the mail
+* `sendAsync()` - Send on a background thread, see [Async Mail](../advanced/async-mail.md)
+* `queue()` - Add to the mail queue, see [Async Mail](../advanced/async-mail.md#mail-queue)
+
+{% hint style="info" %}
+`send()` validates the mail first. If a required field is missing, the protocol is never called and the result contains `error : true` with a message that shows which fields are empty.
+{% endhint %}
+
+For the service methods such as `registerMailer()` and `processQueue()`, see the [Mail Service API](../advanced/mail-service-api.md).
+
+Looking to see the mail you send while developing? Use the [File protocol](../protocols/file.md) and the [Development Mail Viewer](development-mail-viewer.md).
 
 ## Mail Additional Info
 

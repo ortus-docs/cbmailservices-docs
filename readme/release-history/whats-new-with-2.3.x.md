@@ -1,5 +1,6 @@
 ---
 description: August 04, 2022
+icon: bolt
 ---
 
 # What's New With 2.3.x

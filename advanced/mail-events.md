@@ -1,3 +1,8 @@
+---
+description: Tap into the preMailSend and postMailSend interception points.
+icon: bell
+---
+
 # Mail Events
 
 The module will register two [interception points.](https://coldbox.ortusbooks.com/the-basics/interceptors) `PreMailSend` and `PostMailSend`. These interception points are useful to alter the mail object before it gets sent out, and/or perform any functions after the mail gets sent out. An example interceptor would be:

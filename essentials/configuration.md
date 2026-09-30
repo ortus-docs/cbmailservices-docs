@@ -1,5 +1,6 @@
 ---
-description: Let's get up and running!
+description: Every cbMailServices module setting, the supported mail defaults, and how to configure mailers per environment.
+icon: gear
 ---
 
 # Configuration
@@ -117,6 +118,22 @@ component {
 
 By default, the mail services are configured to send mail via the engine's native mail component (`BXMail` for BoxLang, `CFMail` for CFML engines) using a mailer called `default`.
 
+## ⚙️ Settings Reference
+
+| Setting | Type | Default | Description |
+| ------- | ---- | ------- | ----------- |
+| `tokenMarker` | string | `@` | The symbol that wraps [body tokens](sending-mail.md#body-tokens) |
+| `defaultProtocol` | string | `default` | The name of the mailer used when a mail does not specify `mailer`. It must exist in `mailers`. |
+| `mailers` | struct | `{ "default" : { class : "CFMail" } }` | The named [protocol](../protocols/README.md) registrations |
+| `defaults` | struct | `{}` | Default mail attributes seeded into every mail payload |
+| `runQueueTask` | boolean | `true` | Runs the scheduled task that delivers [queued mail](../advanced/async-mail.md) |
+
+The module also sets an entry point of `cbmailservices` and registers two interception points: `preMailSend` and `postMailSend`. See [Mail Events](../advanced/mail-events.md).
+
+{% hint style="info" %}
+The default `mailers` value in the module is `CFMail`. On BoxLang, register `{ class : "BXMail" }` as your `default` mailer to use the native `bx:mail`.
+{% endhint %}
+
 #### TokenMarker
 
 The `tokenMarker` is used when doing mail merges with variables. The service will look in the body of the email and do replacements according to the following pattern:
@@ -142,7 +159,43 @@ mailerKey : {
 
 #### Defaults
 
-A structure of default variables will be seeded into the Mail payload. The protocols then use these as defaults. For example, the `CFMail` protocol will use all these as defaults to the `cfmail` tag.
+A structure of default variables will be seeded into the Mail payload. The protocols then use these as defaults. For example, the `CFMail` protocol will use all these as defaults to the `cfmail` tag. Anything you pass to `newMail()` overrides the default for that mail.
+
+The following keys are supported:
+
+| Key | Type | Description |
+| --- | ---- | ----------- |
+| `from`, `to`, `cc`, `bcc`, `replyto`, `failto` | string | Addresses |
+| `subject`, `body` | string | Content defaults |
+| `type` | string | `html`, `text` or `plain` |
+| `charset` | string | Character set of the mail |
+| `server`, `port`, `username`, `password` | string, numeric | SMTP server connection |
+| `useSSL`, `useTLS` | boolean | Connection security |
+| `timeout` | numeric | Connection timeout in seconds |
+| `priority` | string or numeric | Mail priority |
+| `mailerid` | string | The `X-Mailer` header |
+| `debug` | boolean | Default `false`. Enables engine mail debugging |
+| `spoolenable` | boolean | Engine spooling of mail |
+| `wraptext` | numeric | Wraps text at this column |
+| `mimeattach` | string | File to attach as MIME |
+| `query`, `group`, `groupcasesensitive`, `maxrows`, `startrow` | various | Query driven mail, same as the `cfmail` tag |
+
+```javascript
+defaults : {
+    from     : "info@mydomain.com",
+    replyto  : "support@mydomain.com",
+    type     : "html",
+    server   : "smtp.mydomain.com",
+    port     : 587,
+    username : getSystemSetting( "SMTP_USER" ),
+    password : getSystemSetting( "SMTP_PASS" ),
+    useTLS   : true
+}
+```
+
+{% hint style="info" %}
+Which attributes are honored depends on the protocol. API protocols like [Postmark](../protocols/postmark.md) and [Mailgun](../protocols/mailgun.md) ignore the SMTP connection attributes.
+{% endhint %}
 
 #### RunQueueTask
 
@@ -150,15 +203,15 @@ By default, a task runs every minute to facilitate sending emails asynchronously
 
 ### Mail Protocols
 
-The mail services can send mail via different protocols. The available protocol aliases you can register are:
+The mail services can send mail via different protocols. Each protocol has its own page with all of its properties. The available protocol aliases you can register are:
 
-* `BXMail` (BoxLang native, recommended for BoxLang apps)
-* `CFMail` (CFML engines)
-* `Null`
-* `InMemory`
-* `File`
-* `Mailgun`
-* `Postmark`
+* [`BXMail`](../protocols/bxmail.md) (BoxLang native, recommended for BoxLang apps)
+* [`CFMail`](../protocols/cfmail.md) (CFML engines)
+* [`Null`](../protocols/null.md)
+* [`InMemory`](../protocols/inmemory.md)
+* [`File`](../protocols/file.md)
+* [`Mailgun`](../protocols/mailgun.md)
+* [`Postmark`](../protocols/postmark.md)
 
 {% hint style="warning" %}
 Please note that some of the protocols have property requirements.
@@ -280,3 +333,39 @@ component {
 ```
 {% endtab %}
 {% endtabs %}
+
+## 🌎 Environment Specific Configuration
+
+ColdBox environment functions let you swap mailers per environment. A common setup sends real mail in production and writes to disk in development, which also turns on the [Development Mail Viewer](development-mail-viewer.md):
+
+```javascript
+// config/ColdBox.cfc
+function configure(){
+    environments = { development : "localhost,127\.0\.0\.1" };
+
+    moduleSettings = {
+        cbmailservices : {
+            defaultProtocol : "default",
+            mailers         : {
+                "default" : { class : "Postmark", properties : { apiKey : getSystemSetting( "POSTMARK_KEY" ) } }
+            },
+            defaults : { from : "info@mydomain.com" }
+        }
+    };
+}
+
+function development(){
+    moduleSettings.cbmailservices.mailers[ "default" ] = {
+        class      : "File",
+        properties : { filePath : "/logs/mail" }
+    };
+}
+```
+
+## 🧪 Testing Configuration
+
+Use the [InMemory](../protocols/inmemory.md) or [Null](../protocols/null.md) protocol in your test environment so no mail leaves your test runs, and set `runQueueTask` to `false` if you don't want the scheduler running during tests.
+
+## 🔎 Runtime Registration
+
+You can also register mailers at runtime with the [Mail Service API](../advanced/mail-service-api.md), for example from another module.
