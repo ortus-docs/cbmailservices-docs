@@ -9,6 +9,7 @@ In this section you will find the release notes for each version we release unde
 
 ## Latest Releases
 
+* [2.14.0](whats-new-with-2.14.0.md) - File protocol no longer overwrites mails sent in quick succession
 * [2.13.0](whats-new-with-2.13.0.md) - Delete messages in the development mail viewer
 * [2.12.0](whats-new-with-2.12.0.md) - New development mail viewer
 * [2.11.x](whats-new-with-2.11.x.md) - BoxLang Prime, `BXMail` protocol and ColdBox 8
