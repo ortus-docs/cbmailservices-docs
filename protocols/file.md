@@ -30,7 +30,9 @@ A missing `filePath` throws `FileProtocol.PropertyNotFound`.
 
 ## Output
 
-Files are named `mail.{MM-dd-yyyy}.{HH-mm-ss-L}.html`. Each one contains:
+Each mail is written to its own file named `mail.{MM-dd-yyyy}.{HH-mm-ss-SSS}.{8 hex chars}.html`, for example `mail.11-26-2026.21-12-56-123.a3f09c1e.html`. The time prefix keeps the files in order and the random suffix keeps mails sent in the same millisecond, such as in a loop, from overwriting each other. Treat the file name as opaque, since the [development mail viewer](../essentials/development-mail-viewer.md) derives each message id from it.
+
+Each file contains:
 
 1. A hidden metadata element with the `from`, `to`, `subject` and `sent` values, used by the viewer.
 2. A dump of the mail attributes, mail params and mail parts.

@@ -154,7 +154,7 @@ A message summary looks like this:
 {
   "id"       : "5f2c...",
   "mailer"   : "files",
-  "fileName" : "mail.08-27-2026.14-00-00-000.html",
+  "fileName" : "mail.08-27-2026.14-00-00-000.a3f09c1e.html",
   "from"     : "onboarding@myapp.dev",
   "to"       : "developer@example.com",
   "subject"  : "Verify your email address",
